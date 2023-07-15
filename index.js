@@ -901,6 +901,55 @@ app.get('/supplyLP', async (req, res) => {
 });
 
 
+app.get('/totalsupply', async (req, res) => {
+  const cachedSupply = cache.get('newtotal');
+  if (cachedSupply !== undefined) {
+    res.send(cachedSupply);
+    return;
+  }
+
+  try {
+    const balances = [];
+
+    for (const { address, chain, type, wallet, name } of contractAddresses2) {
+      const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
+      const response = await axios.get(url);
+      const balance = parseInt(response.data.result);
+
+      balances.push({ address, balance, chain, type, wallet, name });
+    }
+
+    balances.sort((a, b) => b.balance - a.balance); // Sort balances in descending order
+
+    let totalBalance = 0;
+    let tableRows = '';
+
+    for (const { address, balance, chain, type, wallet } of balances) {
+      totalBalance += balance;
+      tableRows += `<tr>
+        <td>${address}</td>
+        <td>${Math.floor(balance / 10 ** 18).toLocaleString()}</td>
+        <td>${chain}</td>
+        <td>${type}</td>
+        <td>${wallet}</td>
+      </tr>`;
+    }
+
+    const totalSupplyEndpointResult = await getTotalSupply();
+    const burntTokens = 1000000000 - Math.floor(totalSupplyEndpointResult / 10 ** 18);
+    const totalSupply = 1000000000 - Math.floor(totalBalance / 10 ** 18) - burntTokens;
+    const newTotalS = 1000000000 - burntTokens; 
+    const htmlResponse = `${newTotalS.toLocaleString()}`;
+
+    cache.set('newtotal', htmlResponse); // Cache the newtotal response
+
+    res.send(htmlResponse);
+  } catch (error) {
+    res.status(500).send('Error fetching data');
+  }
+});
+
+
 app.get('/burn', async (req, res) => {
   const cachedSupply = cache.get('burn');
   if (cachedSupply !== undefined) {
