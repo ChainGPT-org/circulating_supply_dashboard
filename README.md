@@ -11,3 +11,11 @@ https://supply.chaingpt.org/LP
 https://supply.chaingpt.org/supply
 ##### #2 (excluding liquidity): 
 https://supply.chaingpt.org/supply
+
+
+##### Total Burnt CGPT Tokens: 
+https://supply.chaingpt.org/burn
+
+
+##### TotalSupply - Burnt: 
+https://supply.chaingpt.org/totalsupply
