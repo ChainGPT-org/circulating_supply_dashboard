@@ -1,5 +1,4 @@
-# circulating_supply_dashboard
-$CGPT Token Circulating Supply Tracker
+# $CGPT Token Circulating Supply Tracker
 
 ##### $CGPT Supply Dashboard (default):
 https://supply.chaingpt.org
