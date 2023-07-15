@@ -602,7 +602,7 @@ app.get('/', async (req, res) => {
   <p>Total Supply: 1,000,000,000</p>
   <p>Burnt $CGPT: ${burntTokens.toLocaleString()}</p>
   <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} (LP.included)</p>
-  <p>Track supply with liquidity <b>excluded</b> <a href="http://localhost:3000/LP">Click Here</a></p>
+  <p>Track supply with liquidity <b>excluded</b> <a href="https://supply.chaingpt.org/LP">Click Here</a></p>
   <br><br>
   <table>
     <tr class="title-row">
@@ -770,7 +770,7 @@ app.get('/LP', async (req, res) => {
       <p>Total Supply: 1,000,000,000</p>
     <p>Burnt $CGPT: ${burntTokens.toLocaleString()}</p>
     <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} (LP.included)</p>
-    <p>Track supply with liquidity <b>included</b> <a href="http://localhost:3000/">Click Here</a></p><br>
+    <p>Track supply with liquidity <b>included</b> <a href="https://supply.chaingpt.org/">Click Here</a></p><br>
     <br>
     <table>
     <tr class="title-row">
