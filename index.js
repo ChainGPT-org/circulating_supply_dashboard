@@ -79,6 +79,12 @@ const contractAddresses = [
     wallet: 'Seedify IDO Fee (3.5%) in tokens', 
   },
   {
+    address: '0x63c089dfd1aff7a677c9a2cacfbd29d8b9e5fa3b',
+    chain: 'BSC',
+    type: 'Seedify Smart-Contract',
+    wallet: 'Seedify Incubation Fee (1%) in tokens', 
+  },
+  {
     address: '0x49631af13fe31e1688ff5a018eeb7917a1e59f81',
     chain: 'BSC',
     type: 'TeamFinance Vesting',
