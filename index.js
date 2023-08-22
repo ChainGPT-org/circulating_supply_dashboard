@@ -309,6 +309,12 @@ const contractAddresses2 = [
     type: 'Vesting Contract (Locked)',
     wallet: 'Seedify Incubation Fee (1%)', 
   },
+    {
+    address: '0x926D28476A4bB4F7E4c27C913a3495b3d7393006',
+    chain: 'BSC',
+    type: 'Vesting Contract (Locked)',
+    wallet: 'Seedify Incubation Fee (1%)', 
+  },
   {
     address: '0xB44889a0Da462090922F72D7FaF69bCEB3aDb7C6',
     chain: 'BSC',
