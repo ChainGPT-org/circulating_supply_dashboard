@@ -168,6 +168,12 @@ const contractAddresses = [
     type: 'IDO Round Vesting',
     wallet: 'Poolz', 
   },
+      {
+    address: '0x926D28476A4bB4F7E4c27C913a3495b3d7393006',
+    chain: 'BSC',
+    type: 'TeamFinance  Contract (Locked)',
+    wallet: 'Seedify  Incubation Fee (1%)', 
+  },
   {
     address: '0xd58DE7168b7d22048db5EdAafa07265B70407Bc0',
     chain: 'BSC',
