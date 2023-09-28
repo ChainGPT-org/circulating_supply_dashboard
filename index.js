@@ -19,54 +19,6 @@ const cgptContractAddress = '0x9840652DC04fb9db2C43853633f0F62BE6f00f98';
 // List of contract addresses with additional information
 const contractAddresses = [
   {
-    address: '0x1f3215f8E5b449BbD30824037c6b55f61c4E9D19',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Treasury Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0x74697c848Bcf5B19b5fcA65137C6c33Ffba8c387',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Team Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0x699cFBBb29f7734Ccb1a342b3DfbEaC391423D48',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Marketing Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0xfBadedB005DFFa61F9A4afc070EF3B65AbbD6aC0',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'DAO Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0x32C069267771881bAc811843E0bb5e2FAe3c39fe',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Development Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0x1b0D9076bB98002f1795706ea4032797E611E1a4',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Advisory Allocation (ref: tokenomics)', 
-  },
-  {
-    address: '0xbc9755809702906A9351C846E33D840541f19d73',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'ClaimPortal Funds (Advisors,Private,KOLs)', 
-  },
-  {
-    address: '0x5930976FC5eaccCea648555cC12438a3278A9FBe',
-    chain: 'BSC',
-    type: 'Multi-Sig Wallet',
-    wallet: 'Liquidity & Farm Allocation (ref: tokenomics) + LPs', 
-  },
-  {
     address: '0x1f7bAAf93e0449394e80f3A24c14fB2fA667495c',
     chain: 'BSC',
     type: 'TeamFinance Vesting',
@@ -77,18 +29,6 @@ const contractAddresses = [
     chain: 'BSC',
     type: 'TeamFinance Vesting',
     wallet: 'Seedify IDO Fee (3.5%) in tokens', 
-  },
-  {
-    address: '0x63c089dfd1aff7a677c9a2cacfbd29d8b9e5fa3b',
-    chain: 'BSC',
-    type: 'Seedify Smart-Contract',
-    wallet: 'Seedify Incubation Fee (1%) in tokens', 
-  },
-  {
-    address: '0x49631af13fe31e1688ff5a018eeb7917a1e59f81',
-    chain: 'BSC',
-    type: 'TeamFinance Vesting',
-    wallet: 'Seedify Incubation Fee (1%)', 
   },
   {
     address: '0x0aaf30015ee2393dbeab2d8830f6d244f2dfa0f1',
@@ -125,18 +65,6 @@ const contractAddresses = [
     chain: 'BSC',
     type: 'TeamFinance Vesting',
     wallet: 'Available Advisory Tokens (ref: tokenomics)', 
-  },
-  {
-    address: '0x1477D450b95Fc5469dd19fA9Dc3629271d5e1121',
-    chain: 'BSC',
-    type: 'Vesting Contract (Locked)',
-    wallet: 'Seedify Incubation Fee (1%)', 
-  },
-  {
-    address: '0xB44889a0Da462090922F72D7FaF69bCEB3aDb7C6',
-    chain: 'BSC',
-    type: 'Vesting Contract (Claimable)',
-    wallet: 'Seedify Incubation Fee (1%)', 
   },
   {
     address: '0x915a6fF38cab0bB0B027179D7b5f196DAB25C626',
@@ -620,7 +548,7 @@ app.get('/', async (req, res) => {
   <p>Total Supply: 1,000,000,000</p>
   <p>Burnt $CGPT: ${burntTokens.toLocaleString()}</p>
   <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} (LP.included)</p>
-  <p>Track supply with liquidity <b>excluded</b> <a href="https://supply.chaingpt.org/LP">Click Here</a></p>
+  <p>Track supply with liquidity & Multi-Sig wallets <b>excluded from the CS</b> <a href="https://supply.chaingpt.org/LP">Click Here</a></p>
   <br><br>
   <table>
     <tr class="title-row">
@@ -788,7 +716,7 @@ app.get('/LP', async (req, res) => {
       <p>Total Supply: 1,000,000,000</p>
     <p>Burnt $CGPT: ${burntTokens.toLocaleString()}</p>
     <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} (LP.excluded)</p>
-    <p>Track supply with liquidity <b>included</b> <a href="https://supply.chaingpt.org/">Click Here</a></p><br>
+    <p>Track supply with liquidity + Multi-sig wallets <b>included in the CS</b> <a href="https://supply.chaingpt.org/">Click Here</a></p><br>
     <br>
     <table>
     <tr class="title-row">
