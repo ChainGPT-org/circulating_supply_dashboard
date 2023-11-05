@@ -143,6 +143,12 @@ const contractAddressesCMC = [
     type: 'Gnosis Multi-Sig Wallet (Team-Controlled',
     wallet: 'Team Controlled Wallet - Multisig', 
   },
+  {
+    address: '0x1D01AFAEAA4e0103c7f595C796CF01B0A2fEAB6D',
+    chain: 'BSC',
+    type: '#2 Gnosis Multi-Sig Wallet (Team-Controlled',
+    wallet: 'Team Controlled Wallet - Multisig', 
+  },
   
   {
     address: '0x699cfbbb29f7734ccb1a342b3dfbeac391423d48',
@@ -292,6 +298,13 @@ const contractAddresses2 = [
     type: 'Multi-Sig Wallet',
     wallet: 'Marketing Allocation (ref: tokenomics)', 
   },
+  
+  {
+    address: '0xdcca71344714D20543934b46688f15F064281dAF',
+    chain: 'BSC',
+    type: 'Multi-Sig Wallet',
+    wallet: '#2 Marketing Allocation (ref: tokenomics)', 
+  },
   {
     address: '0xfBadedB005DFFa61F9A4afc070EF3B65AbbD6aC0',
     chain: 'BSC',
@@ -321,6 +334,12 @@ const contractAddresses2 = [
     chain: 'BSC',
     type: 'Multi-Sig Wallet',
     wallet: 'Liquidity & Farm Allocation (ref: tokenomics) + LPs', 
+  },
+  {
+    address: '0x1D01AFAEAA4e0103c7f595C796CF01B0A2fEAB6D',
+    chain: 'BSC',
+    type: 'Multi-Sig Wallet',
+    wallet: '#2 Liquidity & Farm Allocation (ref: tokenomics) + LPs', 
   },
   {
     address: '0x1f7bAAf93e0449394e80f3A24c14fB2fA667495c',
