@@ -126,12 +126,6 @@ const contractAddresses = [
     type: 'Staking Pools',
     wallet: 'ChainGPT Pad Staking Pool - Rewards Distributor', 
   },
-  {
-    address: '0x3A53269cAE3281155e51d06Ffe14fdE8DC3662f7',
-    chain: 'BSC',
-    type: 'Claim Portal Balance',
-    wallet: 'Claim Portal Balance (KOLs/Advisors/Private)', 
-  },
 ];
 
 
