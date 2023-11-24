@@ -10,7 +10,7 @@ const port = 3000;
 // BSCSCAN API Key
 const apiKey = process.env.BSCSCAN_API_KEY;
 
-const cache = new NodeCache({ stdTTL: 600 }); // Set the cache expiration time to 600 seconds (10 minutes)
+const cache = new NodeCache({ stdTTL: 6000 }); // Set the cache expiration time to 600 seconds (10 minutes)
 
 // Contract address of CGPT token
 const cgptContractAddress = '0x9840652DC04fb9db2C43853633f0F62BE6f00f98';
