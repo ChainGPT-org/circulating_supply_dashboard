@@ -579,6 +579,9 @@ app.get('/', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses) {
+      
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -745,6 +748,8 @@ app.get('/LP', async (req, res) => {
     const balances2 = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses2) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -965,6 +970,8 @@ app.get('/api', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddressesCMC) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -1014,6 +1021,8 @@ app.get('/supplyLP', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses2) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -1063,6 +1072,8 @@ app.get('/totalsupply', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -1112,6 +1123,8 @@ app.get('/burn', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
