@@ -912,6 +912,9 @@ app.get('/supply', async (req, res) => {
     const balances = [];
 
     for (const { address, chain, type, wallet, name } of contractAddresses) {
+      // Introduce a delay of 250ms (1 second / 4) between each API call
+      await new Promise(resolve => setTimeout(resolve, 250));
+
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -948,6 +951,7 @@ app.get('/supply', async (req, res) => {
     res.status(500).send('Error fetching data');
   }
 });
+
 
 
 app.get('/api', async (req, res) => {
