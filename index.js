@@ -10,7 +10,7 @@ const port = 3000;
 // BSCSCAN API Key
 const apiKey = process.env.BSCSCAN_API_KEY;
 
-const cache = new NodeCache({ stdTTL: 6000 }); // Set the cache expiration time to 600 seconds (10 minutes)
+const cache = new NodeCache({ stdTTL: 600 }); // Set the cache expiration time to 600 seconds (10 minutes)
 
 // Contract address of CGPT token
 const cgptContractAddress = '0x9840652DC04fb9db2C43853633f0F62BE6f00f98';
@@ -1062,7 +1062,7 @@ app.get('/totalsupply', async (req, res) => {
   try {
     const balances = [];
 
-    for (const { address, chain, type, wallet, name } of contractAddresses2) {
+    for (const { address, chain, type, wallet, name } of contractAddresses) {
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
@@ -1111,7 +1111,7 @@ app.get('/burn', async (req, res) => {
   try {
     const balances = [];
 
-    for (const { address, chain, type, wallet, name } of contractAddresses2) {
+    for (const { address, chain, type, wallet, name } of contractAddresses) {
       const url = `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
       const response = await axios.get(url);
       const balance = parseInt(response.data.result);
