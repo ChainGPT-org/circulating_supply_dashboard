@@ -936,7 +936,7 @@ app.get('/supply', async (req, res) => {
       totalBalance += balance;
       tableRows += `<tr>
         <td>${address}</td>
-        <td>${Math.floor(balance / 10 ** 18).toLocaleString()}</td>
+        <td>${Math.floor(balance / 10 ** 18)}</td>
         <td>${chain}</td>
         <td>${type}</td>
         <td>${wallet}</td>
@@ -947,7 +947,7 @@ app.get('/supply', async (req, res) => {
     const burntTokens = 1000000000 - Math.floor(totalSupplyEndpointResult / 10 ** 18);
     const totalSupply = 1000000000 - Math.floor(totalBalance / 10 ** 18) - burntTokens;
 
-    const htmlResponse = `${totalSupply.toLocaleString()}`;
+    const htmlResponse = `${totalSupply}`;
 
     cache.set('supply', htmlResponse); // Cache the supply response
 
