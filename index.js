@@ -286,8 +286,7 @@ app.get('/', async (req, res) => {
   <h1>$CGPT Circulating Supply Tracker</h1>
   <p>Total Supply: 1,000,000,000</p>
   <p>Burnt $CGPT: ${burntTokens.toLocaleString()}</p>
-  <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} (LP.included)</p>
-  <p>Track supply with liquidity & Multi-Sig wallets <b>excluded from the CS</b> <a href="https://supply.chaingpt.org/LP">Click Here</a></p>
+  <p>Live Circulating Supply of $CGPT: ${totalSupply.toLocaleString()} </p>
   <br><br>
   <table>
     <tr class="title-row">
