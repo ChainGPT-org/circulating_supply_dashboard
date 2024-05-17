@@ -7,16 +7,16 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-// BSCSCAN API Key
+// BSCSCAN API Key (ENV)
 const apiKey = process.env.BSCSCAN_API_KEY;
 
+// Contract address of CGPT token (ENV)
+const cgptContractAddress = process.env.CGPT_CONTRACT_ADDRESS;
+
+// Maximum Supply of CGPT token (ENV)
+const MaxSupply = process.env.CGPT_MAX_SUPPLY;
+
 const cache = new NodeCache({ stdTTL: 600 }); // Set the cache expiration time to 600 seconds (10 minutes)
-
-// Contract address of CGPT token
-const cgptContractAddress = '0x9840652DC04fb9db2C43853633f0F62BE6f00f98';
-// Maximum Supply of CGPT token
-const MaxSupply = 1000000000;
-
 
 // List of contract addresses with additional information
 const contractAddresses = [
