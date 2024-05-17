@@ -14,7 +14,7 @@ https://supply.chaingpt.org/burn
 https://supply.chaingpt.org/totalsupply
 
 ## How To Deploy
-0- Fork this repo
-1- Update the contract addresses that need to be tracked & the description
-1- Deploy a "Web Service" with Render (https://dashboard.render.com/create?type=web).
-2- Set up the ENV credentials (view example.ENV)
+0- Fork this repo <br> 
+1- Update the contract addresses that need to be tracked & the description <br>
+1- Deploy a "Web Service" with Render (https://dashboard.render.com/create?type=web). <br>
+2- Set up the ENV credentials (view example.ENV) <br>
