@@ -68,48 +68,48 @@ const contractAddresses = [
     type: 'TeamFinance Vesting',
     wallet: 'Available Advisory Tokens (ref: tokenomics)', 
   },
-  {
-    address: '0x915a6fF38cab0bB0B027179D7b5f196DAB25C626',
-    chain: 'BSC',
-    type: 'IDO Round Vesting',
-    wallet: 'Seedify IDO', 
-  },
-  {
-    address: '0x6dAa1b5F9cF268AF2fd93Dff8083E2d3ca237008',
-    chain: 'BSC',
-    type: 'Crowdfunding Vesting',
-    wallet: 'YAYNetwork', 
-  },
-  {
-    address: '0x98E9EBc9539d674cbcd505b6A6483991d50c2356',
-    chain: 'BSC',
-    type: 'Crowdfunding Vesting',
-    wallet: 'Decubate', 
-  },
-  {
-    address: '0xd377766831DE29B39Ea45687983F9F590add517f',
-    chain: 'BSC',
-    type: 'IDO Round Vesting',
-    wallet: 'EnjinStarter', 
-  },
-  {
-    address: '0x436CE2ce8d8d2Ccc062f6e92faF410DB4d397905',
-    chain: 'BSC',
-    type: 'IDO Round Vesting',
-    wallet: 'Poolz', 
-  },
+//  {
+//    address: '0x915a6fF38cab0bB0B027179D7b5f196DAB25C626',
+//    chain: 'BSC',
+//    type: 'IDO Round Vesting',
+//    wallet: 'Seedify IDO', 
+//  },
+//  {
+//    address: '0x6dAa1b5F9cF268AF2fd93Dff8083E2d3ca237008',
+//    chain: 'BSC',
+//    type: 'Crowdfunding Vesting',
+//    wallet: 'YAYNetwork', 
+//  },
+ // {
+ //   address: '0x98E9EBc9539d674cbcd505b6A6483991d50c2356',
+//    chain: 'BSC',
+//    type: 'Crowdfunding Vesting',
+//    wallet: 'Decubate', 
+//  },
+ // {
+ //   address: '0xd377766831DE29B39Ea45687983F9F590add517f',
+ //   chain: 'BSC',
+ //   type: 'IDO Round Vesting',
+ //   wallet: 'EnjinStarter', 
+ // },
+//  {
+//    address: '0x436CE2ce8d8d2Ccc062f6e92faF410DB4d397905',
+//    chain: 'BSC',
+//    type: 'IDO Round Vesting',
+//    wallet: 'Poolz', 
+//  },
       {
     address: '0x926D28476A4bB4F7E4c27C913a3495b3d7393006',
     chain: 'BSC',
     type: 'TeamFinance  Contract (Locked)',
     wallet: 'Seedify  Incubation Fee (1%)', 
   },
-  {
-    address: '0xd58DE7168b7d22048db5EdAafa07265B70407Bc0',
-    chain: 'BSC',
-    type: 'IDO Round Vesting',
-    wallet: 'WePad', 
-  },
+//  {
+//    address: '0xd58DE7168b7d22048db5EdAafa07265B70407Bc0',
+//    chain: 'BSC',
+//    type: 'IDO Round Vesting',
+//    wallet: 'WePad', 
+//  },
   {
     address: '0x765a6ee976137801F2661c3644E1fde369A8ED18',
     chain: 'BSC',
@@ -122,12 +122,12 @@ const contractAddresses = [
     type: 'Staking Pools',
     wallet: 'ChainGPT Pad Staking Pool', 
   },
-  {
-    address: '0x28FBFA75850E246BdD454A0e76FeAA42D771757B',
-    chain: 'BSC',
-    type: 'Staking Pools',
-    wallet: 'ChainGPT Pad Staking Pool - Rewards Distributor', 
-  },
+//  {
+//    address: '0x28FBFA75850E246BdD454A0e76FeAA42D771757B',
+//    chain: 'BSC',
+//    type: 'Staking Pools',
+//    wallet: 'ChainGPT Pad Staking Pool - Rewards Distributor', 
+//  },
 ];
 
 
