@@ -26,12 +26,12 @@ const contractAddresses = [
     type: 'TeamFinance Vesting',
     wallet: 'KOLs Round (ref: tokenomics)', 
   },
-  {
-    address: '0x77A8b449e7cd61dd54B755034Baf9d00EeeD1076',
-    chain: 'BSC',
-    type: 'TeamFinance Vesting',
-    wallet: 'Seedify IDO Fee (3.5%) in tokens', 
-  },
+ // {
+ //   address: '0x77A8b449e7cd61dd54B755034Baf9d00EeeD1076',
+ //   chain: 'BSC',
+ //   type: 'TeamFinance Vesting',
+ //   wallet: 'Seedify IDO Fee (3.5%) in tokens', 
+ // },
   {
     address: '0x0aaf30015ee2393dbeab2d8830f6d244f2dfa0f1',
     chain: 'BSC',
