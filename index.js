@@ -110,18 +110,18 @@ const contractAddresses = [
 //    type: 'IDO Round Vesting',
 //    wallet: 'WePad', 
 //  },
-  {
-    address: '0x765a6ee976137801F2661c3644E1fde369A8ED18',
-    chain: 'BSC',
-    type: 'Staking Pools',
-    wallet: 'CGPT Staking Rewards & Staked (via Decubate)', 
-  },
-  {
-    address: '0x62A402DEf6Ca37E9CA7a544bE34954748088CCEE',
-    chain: 'BSC',
-    type: 'Staking Pools',
-    wallet: 'ChainGPT Pad Staking Pool', 
-  },
+//  {
+//    address: '0x765a6ee976137801F2661c3644E1fde369A8ED18',
+//    chain: 'BSC',
+//    type: 'Staking Pools',
+//    wallet: 'CGPT Staking Rewards & Staked (via Decubate)', 
+//  },
+//  {
+//    address: '0x62A402DEf6Ca37E9CA7a544bE34954748088CCEE',
+//    chain: 'BSC',
+//    type: 'Staking Pools',
+//    wallet: 'ChainGPT Pad Staking Pool', 
+//  },
 //  {
 //    address: '0x28FBFA75850E246BdD454A0e76FeAA42D771757B',
 //    chain: 'BSC',
