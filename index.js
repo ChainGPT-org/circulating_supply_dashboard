@@ -181,7 +181,7 @@ app.get('/', async (req, res) => {
 
     for (const { address, balance, chain, type, wallet } of balances) {
       totalBalance += balance;
-      const bscScanLink = `https://bscscan.com/token/0x9840652DC04fb9db2C43853633f0F62BE6f00f98?a=${address}`;
+      const bscScanLink = `https://bscscan.com/token/${cgptContractAddress}?a=${address}`;
  
       tableRows += `<tr>
       <td><a href="${bscScanLink}" target="_blank">${address}</a></td>
