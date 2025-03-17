@@ -74,6 +74,12 @@ const contractAddresses = [
     type: 'TeamFinance  Contract (Locked)',
     wallet: 'Seedify  Incubation Fee (1%)', 
   },
+      {
+    address: '0x1f3215f8E5b449BbD30824037c6b55f61c4E9D19',
+    chain: 'BSC',
+    type: 'Treasury Allocation',
+    wallet: 'Seedify  Advisory Fee (1%)', 
+  },
 ];
 
 
