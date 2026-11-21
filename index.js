@@ -18,6 +18,23 @@ const MaxSupply = process.env.CGPT_MAX_SUPPLY;
 
 const cache = new NodeCache({ stdTTL: 600 }); // Set the cache expiration time to 600 seconds (10 minutes)
 
+// Bounded upstream client: no hung sockets, no oversized bodies, no redirects.
+const etherscan = axios.create({ timeout: 10000, maxContentLength: 1000000, maxRedirects: 0 });
+
+// Single-flight: concurrent cache misses share one in-flight upstream load
+// instead of each starting its own Etherscan loop. Failures are not cached.
+const inflight = new Map();
+function cached(key, load) {
+  const hit = cache.get(key);
+  if (hit !== undefined) return Promise.resolve(hit);
+  if (!inflight.has(key)) {
+    inflight.set(key, load()
+      .then(value => { cache.set(key, value); return value; })
+      .finally(() => inflight.delete(key)));
+  }
+  return inflight.get(key);
+}
+
 // List of contract addresses with additional information
 const contractAddresses = [
   {
@@ -78,23 +95,31 @@ const contractAddresses = [
 
 
 async function getTotalSupply() {
-  const cachedTotalSupply = cache.get('totalSupply');
-  if (cachedTotalSupply !== undefined) {
-    return cachedTotalSupply;
-  }
+  return cached('totalSupply', async () => {
+    try {
+      const url = `https://api.etherscan.io/v2/api?chainid=56&module=stats&action=tokensupply&contractaddress=${cgptContractAddress}&apikey=${apiKey}`;
+      const response = await etherscan.get(url);
+      return response.data.result;
+    } catch (error) {
+      console.error('Error fetching total supply:', error.message);
+      throw error;
+    }
+  });
+}
 
-  try {
-    const url = `https://api.etherscan.io/v2/api?chainid=56&module=stats&action=tokensupply&contractaddress=${cgptContractAddress}&apikey=${apiKey}`;
-    const response = await axios.get(url);
-    const result = response.data.result;
-
-    cache.set('totalSupply', result); // Cache the total supply
-
-    return result;
-  } catch (error) {
-    console.error('Error fetching total supply:', error);
-    throw error;
-  }
+// Balances of the excluded contracts, fetched sequentially (Etherscan rate limit) once per cache window.
+function fetchBalances() {
+  return cached('rawBalances', async () => {
+    const balances = [];
+    for (const { address, chain, type, wallet, name } of contractAddresses) {
+      await new Promise(resolve => setTimeout(resolve, 250));
+      const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
+      const response = await etherscan.get(url);
+      const balance = parseInt(response.data.result);
+      balances.push({ address, balance, chain, type, wallet, name });
+    }
+    return balances;
+  });
 }
 
 // This is the home-page URL that will show a detailed list of the excluded addresses from the supply and all the data such as total supply, burnt supply, circulating supply, etc.
@@ -106,18 +131,7 @@ app.get('/', async (req, res) => {
   }
 
   try {
-    const balances = [];
-
-    for (const { address, chain, type, wallet, name } of contractAddresses) {
-      
-        await new Promise(resolve => setTimeout(resolve, 250));
-
-      const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
-      const response = await axios.get(url);
-      const balance = parseInt(response.data.result);
-
-      balances.push({ address, balance, chain, type, wallet, name });
-    }
+    const balances = [...await fetchBalances()]; // copy: sorted below
 
     balances.sort((a, b) => b.balance - a.balance); // Sort balances in descending order
 
@@ -276,18 +290,7 @@ app.get('/supply', async (req, res) => {
   }
 
   try {
-    const balances = [];
-
-    for (const { address, chain, type, wallet, name } of contractAddresses) {
-      // Introduce a delay of 250ms (1 second / 4) between each API call
-      await new Promise(resolve => setTimeout(resolve, 250));
-
-      const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
-      const response = await axios.get(url);
-      const balance = parseInt(response.data.result);
-
-      balances.push({ address, balance, chain, type, wallet, name });
-    }
+    const balances = [...await fetchBalances()]; // copy: sorted below
 
     balances.sort((a, b) => b.balance - a.balance); // Sort balances in descending order
 
@@ -329,37 +332,8 @@ app.get('/totalsupply', async (req, res) => {
   }
 
   try {
-    const balances = [];
-
-    for (const { address, chain, type, wallet, name } of contractAddresses) {
-        await new Promise(resolve => setTimeout(resolve, 250));
-
-      const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
-      const response = await axios.get(url);
-      const balance = parseInt(response.data.result);
-
-      balances.push({ address, balance, chain, type, wallet, name });
-    }
-
-    balances.sort((a, b) => b.balance - a.balance); // Sort balances in descending order
-
-    let totalBalance = 0;
-    let tableRows = '';
-
-    for (const { address, balance, chain, type, wallet } of balances) {
-      totalBalance += balance;
-      tableRows += `<tr>
-        <td>${address}</td>
-        <td>${Math.floor(balance / 10 ** 18)}</td>
-        <td>${chain}</td>
-        <td>${type}</td>
-        <td>${wallet}</td>
-      </tr>`;
-    }
-
     const totalSupplyEndpointResult = await getTotalSupply();
     const burntTokens = MaxSupply - Math.floor(totalSupplyEndpointResult / 10 ** 18);
-    const totalSupply = MaxSupply - Math.floor(totalBalance / 10 ** 18) - burntTokens;
     const newTotalS = MaxSupply - burntTokens; 
     const htmlResponse = `${newTotalS}`;
 
@@ -382,37 +356,8 @@ app.get('/burn', async (req, res) => {
   }
 
   try {
-    const balances = [];
-
-    for (const { address, chain, type, wallet, name } of contractAddresses) {
-        await new Promise(resolve => setTimeout(resolve, 250));
-
-      const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${cgptContractAddress}&address=${address}&tag=latest&apikey=${apiKey}`;
-      const response = await axios.get(url);
-      const balance = parseInt(response.data.result);
-
-      balances.push({ address, balance, chain, type, wallet, name });
-    }
-
-    balances.sort((a, b) => b.balance - a.balance); // Sort balances in descending order
-
-    let totalBalance = 0;
-    let tableRows = '';
-
-    for (const { address, balance, chain, type, wallet } of balances) {
-      totalBalance += balance;
-      tableRows += `<tr>
-        <td>${address}</td>
-        <td>${Math.floor(balance / 10 ** 18).toLocaleString()}</td>
-        <td>${chain}</td>
-        <td>${type}</td>
-        <td>${wallet}</td>
-      </tr>`;
-    }
-
     const totalSupplyEndpointResult = await getTotalSupply();
     const burntTokens = MaxSupply - Math.floor(totalSupplyEndpointResult / 10 ** 18);
-    const totalSupply = MaxSupply - Math.floor(totalBalance / 10 ** 18) - burntTokens;
 
     const htmlResponse = `${burntTokens.toLocaleString()}`;
 
